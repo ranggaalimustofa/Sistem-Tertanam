@@ -77,7 +77,7 @@ void setup()
   }
 
   // Setup the web server
-  server.on("/set", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
             {
     // read HTML response
     File file = SPIFFS.open("/index.html", "r");
@@ -88,7 +88,7 @@ void setup()
       request->send(404, "text/plain", "File not found");
     } });
 
-  server.serveStatic("/set", SPIFFS, "/");
+  server.serveStatic("/", SPIFFS, "/");
 
   server.on("/save", HTTP_POST, [](AsyncWebServerRequest *request)
             {
